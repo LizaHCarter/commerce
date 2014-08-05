@@ -1,0 +1,30 @@
+extends ../shared/template
+
+block content
+  h2 Items
+
+  table 
+    thead
+      tr
+        th Name
+        th Dimensions
+        th Weight
+        th Quantity
+        th MSRP
+        th Sale %
+        th Cost
+
+    tbody
+      each item in items
+        tr(style='background-color:#{item.color}')
+          td: a(href='/items/#{item._id}')= item.name
+          td
+            span l #{item.dimensions.l}in/
+            span w #{item.dimensions.w}in/
+            span h #{item.dimensions.h}in
+          td #{item.weight}lbs
+          td= item.quantity
+          td $#{item.msrp.toFixed(2)}
+          td #{item.percentOff}%
+          td $#{item.cost().toFixed(2)}
+          
